@@ -1,15 +1,4 @@
-# express boilerplate
-
-This is a express boilerplate with the following features:
-
-> - `ECMA Script 2020` or ES2020 features enabled
-> - `Babel` to transpile the js code
-> - `Dotenv` Load environment variables from .env file
-> - `Eslint` Code quality tool
-> - `Prettier` to prettify the code
-> - `CORS` feature enabled
-> - `Error Handling` errors custom middleware and helpers globally configured
-> - `Winston` logger tool support
+# board
 
 ## Basic Information
 

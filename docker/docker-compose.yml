@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  board_node:
+    build:
+        context: ../  # 빌드할 Dockerfile이 위치한 경로
+    restart: always
+    container_name: board_node
+    #코드 수정후 다시이미지 build없이 코드가 반영 될 수 있게 volume을 사용한다.
+    volumes:
+      - ../src:/usr/src/app/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - board_mysql
+  board_mysql:
+    image: mysql:8.0
+    # image: ubuntu/mysql:latest
+    restart: always
+    container_name: board_mysql
+    environment: # -e 옵션
+      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_PASSWORD=password # MYSQL 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    ports:
+      - "3306:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)  <- 컨테이너 내부는 무조건 3306
+
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --lower_case_table_names=1
+    volumes:
+      - ./mysql:/var/lib/mysql 
+
