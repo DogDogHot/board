@@ -1,0 +1,86 @@
+{
+  "name": "express-starter",
+  "description": "express starter",
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "bin": "src/bin/www.js",
+  "main": "src/app.js",
+  "author": {
+    "name": "DogDogHot",
+    "email": "k6014014@gmail.com"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "mysql",
+    "node",
+    "node.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DogDogHot/board"
+  },
+  "scripts": {
+    "start": "npm run prod",
+    "prod": "cross-env NODE_ENV=production npm-run-all build server",
+    "build": "npm-run-all clean transpile",
+    "clean": "rimraf build",
+    "transpile": "babel src --out-dir build",
+    "server": "node ./build/bin/www",
+    "start:dev": "cross-env NODE_ENV=development nodemon -L --inspect=0.0.0.0 --exec ./node_modules/.bin/babel-node src/bin/www",
+    "lint": "eslint -c './.eslintrc' --ignore-path .gitignore --ext .js .",
+    "lint-and-fix": "eslint --ignore-path .gitignore --ext .js --fix .",
+    "lint-all": "eslint .",
+    "test": "cross-env NODE_ENV=test jest --verbose",
+    "prettier": "prettier --check **/*.js",
+    "prettier:fix": "prettier --write **/*.js"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "core-js": "^3.21.1",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "regenerator-runtime": "^0.13.9",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@types/compression": "^1.7.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "2.6.2",
+    "supertest": "^6.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
