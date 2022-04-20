@@ -1,0 +1,7 @@
+{
+  "host": "board_mysql",
+  "dialect": "mysql",
+  "database":"testdb",
+  "username":"root",
+  "password":"password"
+}

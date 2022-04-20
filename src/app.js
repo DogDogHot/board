@@ -1,19 +1,23 @@
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import xss from "xss-clean";
-import v1Routes from "./routes";
+import Sequelize from "sequelize";
+import dotenv from "dotenv";
+dotenv.config();
 import errorHandler from "./middlewares/errorHandler.middleware";
 import { NotFoundError } from "./helpers/errors.helper";
+import config from "./config/sequelize.config";
+import initModels from "./models/init-models";
+import v1Routes from "./routes";
 
-/**
- * Global env variables definition
- */
-dotenv.config();
+const sequelize = new Sequelize(config);
+
+const db = initModels(sequelize);
+sequelize.sync();
 
 /**
  * Define Express
